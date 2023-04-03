@@ -26,4 +26,4 @@ jobs:
         script: |
           cd application
           git pull origin main
-          gunicorn app:app -b localhost:8000
+          gunicorn app:app -b 8000
