@@ -1,0 +1,102 @@
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1e1e1e;
+  color: #d2d2d2;
+}
+
+header {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto; /* Center the main container */
+}
+  
+a {
+  color: #e8d362;
+}
+  
+a:hover {
+  color: #f9e800;
+  text-decoration: none;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Navbar styles */
+.navbar {
+  box-shadow: 0 2px 4px rgba(97, 97, 97, 0.3);
+  background-color: #313131;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e8d362;
+}
+
+.nav-link {
+  color: #e8d362;
+}
+
+.nav-link:hover {
+  color: #e8d362;
+}
+
+/* Blog post card styles */
+.card {
+  box-shadow: 0 2px 4px #a6a6a638;
+  border: none;
+  margin-bottom: 30px;
+  width: 80%; /* Make the post box slightly more narrow */
+  margin-left: auto;
+  margin-right: auto; /* Center the post box */
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px #dcdaa438;
+  transform: translateY(-3px);
+  transition: all 0.2s;
+}
+
+.card-body {
+  background-color: #313131;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.post-text {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.card-img {
+  max-height: 200px; /* Increase the image height */
+  max-width: 200px; /* Increase the image width */
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+}
+
+/* Footer styles */
+footer {
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #313131;
+  color: #d3d3d3;
+}
