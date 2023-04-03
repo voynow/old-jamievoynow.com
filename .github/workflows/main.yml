@@ -31,6 +31,5 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
-        sudo chown ec2-user:ec2-user /application
         rsync -avz -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --exclude '.git*' --exclude 'private_key.pem' ./ $USER@$HOST:/application
         ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $USER@$HOST "cd /path/to/your/app && gunicorn app:app -b 0.0.0.0:8000 -D"
