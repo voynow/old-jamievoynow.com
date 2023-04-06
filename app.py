@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import datetime
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'http://jamievoynow.com'
+# app.config['SERVER_NAME'] = 'http://jamievoynow.com'
 
 # Fake blog posts data
 posts = [
@@ -44,4 +44,4 @@ def post(post_id):
         return "Post not found", 404
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    app.run(port=8080)

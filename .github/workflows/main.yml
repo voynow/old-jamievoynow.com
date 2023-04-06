@@ -32,4 +32,4 @@ jobs:
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
         rsync -avz -e "ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --exclude '.git*' --exclude 'private_key.pem' ./ $USER@$HOST:application
-        ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $USER@$HOST "cd application && sudo yum update -y && sudo yum install -y python3-pip && sudo python3 -m pip install -r requirements.txt && gunicorn app:app -b 0.0.0.0:8000 -D"
+        ssh -i private_key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $USER@$HOST "cd application && sudo yum update -y && sudo yum install -y python3-pip && sudo python3 -m pip install -r requirements.txt && gunicorn app:app -b 0.0.0.0:8080 -D"
