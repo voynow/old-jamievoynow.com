@@ -2,7 +2,6 @@ from flask import Flask, render_template
 import datetime
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'http://jamievoynow.com'
 
 # Fake blog posts data
 posts = [
