@@ -2,7 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #1e1e1e;
-  color: #d2d2d2;
+  color: #c4c4c4;
 }
 
 header {
@@ -50,9 +50,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #e8d362;
 }
 
+.welcome-message {
+  display: flex;
+  flex-direction: column; /* Change the flex direction to column */
+  align-items: center; /* Align items horizontally centered */
+  margin-top: 1.5rem; /* Add some margin below the welcome message */
+  margin-bottom: 1.5rem; /* Add some margin below the welcome message */
+}
+
 /* Blog post card styles */
 .card {
-  box-shadow: 0 2px 4px #a6a6a638;
+  box-shadow: 0 2px 4px #dcdaa438;
   border: none;
   margin-bottom: 30px;
   width: 80%; /* Make the post box slightly more narrow */
@@ -67,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-body {
-  background-color: #313131;
+  background-color: #2b2b2b;
   padding: 1.5rem;
   display: flex;
   flex-direction: row;
