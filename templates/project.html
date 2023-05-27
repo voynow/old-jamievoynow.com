@@ -3,10 +3,6 @@
 <div class="container">
     <h1>{{ project.title }}</h1>
     <p>{{ project.description }}</p>
-    <h2>Code Examples</h2>
-    {% for code in project.codes %}
-    <pre><code>{{ code }}</code></pre>
-    {% endfor %}
-    <p><a href="{{ project.url }}">View Live Project</a></p>
+    <p><a href="{{ project.url }}">View project on Github</a></p>
 </div>
 {% endblock %}

@@ -3,6 +3,25 @@ from flask_caching import Cache
 import logging
 
 
+projects_info = [
+    {
+        "title": "turbo-docs",
+        "description": "GPT-powered development tool for generating documentation",
+        "url": "https://github.com/voynow/turbo-docs",
+    },
+    {
+        "title": "repo-chat",
+        "description": "Talk to code!",
+        "url": "https://github.com/voynow/repo-chat",
+    },
+    {
+        "title": "strava",
+        "description": "[Decommissioned] Custom data app built on the strava API",
+        "url": "https://github.com/voynow/strava",
+    },
+]
+
+
 def fetch_profile_info():
     profile_info = {
         "name": "Jamie Voynow",
@@ -14,24 +33,13 @@ def fetch_profile_info():
     return profile_info
 
 def fetch_projects_info():
-    projects_info = [
-        {
-            "title": "turbo-docs",
-            "description": "GPT-powered development tool for generating documentation",
-            "live_link": "https://github.com/voynow/turbo-docs",
-        },
-        {
-            "title": "repo-chat",
-            "description": "Talk to code!",
-            "live_link": "https://github.com/voynow/repo-chat",
-        },
-        {
-            "title": "strava",
-            "description": "[Decommissioned] Custom data app built on the strava API",
-            "live_link": "https://github.com/voynow/strava",
-        },
-    ]
     return projects_info
+
+def fetch_project(project_name):
+    for project in projects_info:
+        if project["title"] == project_name:
+            return project
+    return None
 
 
 app = Flask(__name__)
