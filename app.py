@@ -9,6 +9,7 @@ def fetch_profile_info():
         "bio": "Software Engineer @ Vanguard",
         "image": "/static/headshot.jpg",
         "linkedin": "https://www.linkedin.com/in/voynow/",
+        "github": "https://github.com/voynow",
     }
     return profile_info
 
@@ -17,19 +18,16 @@ def fetch_projects_info():
         {
             "title": "turbo-docs",
             "description": "GPT-powered development tool for generating documentation",
-            "image": "static/turbo.png",
             "live_link": "https://github.com/voynow/turbo-docs",
         },
         {
             "title": "repo-chat",
             "description": "Talk to code!",
-            "image": "static/repochat.png",
             "live_link": "https://github.com/voynow/repo-chat",
         },
         {
             "title": "strava",
             "description": "[Decommissioned] Custom data app built on the strava API",
-            "image": "static/strava-logo.jpg",
             "live_link": "https://github.com/voynow/strava",
         },
     ]
