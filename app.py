@@ -1,25 +1,7 @@
 from flask import Flask, render_template
 from flask_caching import Cache
+import json
 import logging
-
-
-projects_info = [
-    {
-        "title": "turbo-docs",
-        "description": "GPT-powered development tool for generating documentation",
-        "url": "https://github.com/voynow/turbo-docs",
-    },
-    {
-        "title": "repo-chat",
-        "description": "Talk to code!",
-        "url": "https://github.com/voynow/repo-chat",
-    },
-    {
-        "title": "strava",
-        "description": "[Decommissioned] Custom data app built on the strava API",
-        "url": "https://github.com/voynow/strava",
-    },
-]
 
 
 def fetch_profile_info():
@@ -33,10 +15,10 @@ def fetch_profile_info():
     return profile_info
 
 def fetch_projects_info():
-    return projects_info
+    return json.load(open('static/projects.json', 'r'))
 
 def fetch_project(project_name):
-    for project in projects_info:
+    for project in fetch_projects_info():
         if project["title"] == project_name:
             return project
     return None
