@@ -1,14 +1,47 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1>{{ project.title }}</h1>
-    <p><a href="{{ project.url }}">View project on Github</a></p>
-</div>
-<div class="container">
+
+<div class="container main-content">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin-bottom: 0;">{{ project.title }}</h1>
+        <p style="margin-top: 0;"><a href="{{ project.url }}">View project on Github</a></p>
+    </div>
     <p>{{ project.description }}</p>
-    <h3>Overview</h3>
-    <p>{{ project.overview|replace("\n", "<br>")|safe }}</p>
-    <h3>Code Examples</h3>
-    <pre><code>{{ project.code_example }}</code></pre>
 </div>
+
+
+<div class="container main-content">
+	<h3>Overview</h3>
+	<p>{{ project.overview|replace("\n", "<br>")|safe }}</p>
+</div>
+
+<div class="container main-content">
+	<h3>Code Examples</h3>
+	<pre><code>{{ project.code_example }}</code></pre>
+</div>
+
+<div class="container main-content">
+	<div class="row">
+		<div class="col-md-12">
+			<form>
+				<div class="input-group" id="textarea-group">
+					<textarea class="form-control textarea-dark" id="message" rows="2" placeholder="Ask me a question! (Still under development)"></textarea>
+					<div class="input-group-append">
+						<button type="submit" class="btn btn-info btn-smaller">Chat</button>
+					</div>
+				</div>					
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.getElementById("message").addEventListener("keydown", function(event) {
+		if (event.key == "Enter") {
+			event.preventDefault();
+			event.target.form.submit();
+		}
+	});
+</script>
+
 {% endblock %}
