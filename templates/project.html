@@ -1,28 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<!-- Group 1: title, url, and description -->
 <div class="container main-content">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-        <h1>{{ project.title }}</h1>
-        <p><a href="{{ project.url }}">View project on Github</a></p>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin-bottom: 0;">{{ project.title }}</h1>
+        <p style="margin-top: 0;"><a href="{{ project.url }}">View project on Github</a></p>
     </div>
-	<p>{{ project.description }}</p>
+    <p>{{ project.description }}</p>
 </div>
 
-<!-- Group 2: overview -->
+
 <div class="container main-content">
 	<h3>Overview</h3>
 	<p>{{ project.overview|replace("\n", "<br>")|safe }}</p>
 </div>
 
-<!-- Group 3: code_example -->
 <div class="container main-content">
 	<h3>Code Examples</h3>
 	<pre><code>{{ project.code_example }}</code></pre>
 </div>
 
-<!-- Group 4: chat window -->
 <div class="container main-content">
 	<div class="row">
 		<div class="col-md-12">
