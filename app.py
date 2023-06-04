@@ -64,14 +64,6 @@ def handle_message(msg):
     response = chain.chat(msg)['text']
     send(f"Computer: {response}", broadcast=True)
 
-#     self.chain = self.create_chain(**getattr(templates, name))
-#   File "C:\Users\voyno\Desktop\code\repos\personal-website\venv\lib\site-packages\repo_chat\chain_manager.py", line 31, in create_chain
-#     llm = ChatOpenAI(
-#   File "pydantic\main.py", line 341, in pydantic.main.BaseModel.__init__
-# pydantic.error_wrappers.ValidationError: 1 validation error for ChatOpenAI
-# __root__
-#   Did not find openai_api_key, please add an environment variable `OPENAI_API_KEY` which contains it, or pass  `openai_api_key` as a named parameter. (type=value_error)
-
 
 @app.errorhandler(404)
 def page_not_found(e):
