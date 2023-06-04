@@ -8,3 +8,4 @@ gevent
 gevent-websocket
 git2vec
 repo_chat
+openai

@@ -61,8 +61,8 @@ def handle_message(msg):
     repo_name = "https://github.com/voynow/turbo-docs"
     raw_repo = loader.load(repo_name, return_str=True)
     chain = RawChain(raw_repo)
-    response = chain.chat("How do I use this?")['text']
-    send(f"Computer: {response}? Lol.", broadcast=True)
+    response = chain.chat(msg)['text']
+    send(f"Computer: {response}", broadcast=True)
 
 #     self.chain = self.create_chain(**getattr(templates, name))
 #   File "C:\Users\voyno\Desktop\code\repos\personal-website\venv\lib\site-packages\repo_chat\chain_manager.py", line 31, in create_chain
