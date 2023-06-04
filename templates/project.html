@@ -20,7 +20,7 @@
 	<pre><code>{{ project.code_example }}</code></pre>
 </div>
 
-<div class="container main-content project-div">
+<div class="container main-content project-div" id="chatbox">
 	<div class="row">
 		<div class="col-md-12">
 			<form>
@@ -36,12 +36,24 @@
 	</div>
 </div>
 
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
 <script>
-	document.getElementById("message").addEventListener("keydown", function (event) {
-		if (event.key == "Enter") {
-			event.preventDefault();
-			event.target.form.submit();
-		}
+	var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+	document.querySelector('form').addEventListener('submit', function(e) {
+		e.preventDefault();
+		var inputField = document.querySelector('#message');
+		var msg = inputField.value;
+		inputField.value = '';
+		socket.emit('message', msg);
+	});
+
+	socket.on('message', function(msg) {
+		var chatBox = document.querySelector('#chatbox');
+		var paragraph = document.createElement('p');
+		paragraph.textContent = msg;
+		chatBox.append(paragraph);
 	});
 </script>
 
