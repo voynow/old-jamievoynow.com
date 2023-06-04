@@ -3,3 +3,9 @@ Flask
 gunicorn
 Jinja2
 Flask-Caching
+Flask-SocketIO
+gevent
+gevent-websocket
+git2vec
+repo_chat
+openai
