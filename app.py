@@ -1,11 +1,38 @@
 from flask import Flask, render_template
 from flask_caching import Cache
-import json
-import logging
 from flask_socketio import SocketIO, send, emit
 from git2vec import loader
-from repo_chat import chat_utils
+import json
+import logging
 import openai
+import os
+from repo_chat import chat_utils
+import requests
+
+
+GH_GRAPHQL_QUERY = """
+query {
+  user(login: "%s") {
+    pinnedItems(first: 6, types: [REPOSITORY]) {
+      edges {
+        node {
+          ... on Repository {
+            name
+            description
+            url
+            stargazers {
+              totalCount
+            }
+            forks {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+}
+"""
 
 
 def fetch_profile_info():
@@ -20,18 +47,31 @@ def fetch_profile_info():
 
 
 def fetch_projects_info():
-    return json.load(open("static/projects.json", "r"))
+    """Fetch pinned projects from GitHub"""
+    endpoint = "https://api.github.com/graphql"
+    headers = {"Authorization": f"Bearer {os.environ['GH_TOKEN']}"}
+    username = "voynow"
 
+    response = requests.post(
+        endpoint,
+        json={"query": GH_GRAPHQL_QUERY % username},
+        headers=headers,
+    ).json()
 
-def fetch_project(project_name):
-    for project in fetch_projects_info():
-        if project["title"] == project_name:
-            return project
-    return None
+    edges = response["data"]["user"]["pinnedItems"]["edges"]
+    return {
+        node["node"]["name"]: {
+            "name": node["node"]["name"],
+            "description": node["node"]["description"],
+            "url": node["node"]["url"],
+        }
+        for node in edges
+    }
 
 
 def get_computer_response(data):
     """Chat with an LLM given the repo as context"""
+    print(data)
     repo_name = f"https://github.com/voynow/{data['project']}"
     raw_repo = loader.load(repo_name, return_str=True)
 
@@ -51,23 +91,24 @@ cache = Cache(app, config={"CACHE_TYPE": "simple"})
 
 # Configure logging
 handler = logging.FileHandler("app.log")
-handler.setLevel(logging.INFO) 
+handler.setLevel(logging.INFO)
 app.logger.addHandler(handler)
+PROJECTS = fetch_projects_info()
 
 
 @app.route("/")
 @cache.cached(timeout=50)
 def home():
     profile = fetch_profile_info()
-    projects = fetch_projects_info()
-    return render_template("home.html", profile=profile, projects=projects)
+    project_objs = [value for _, value in PROJECTS.items()]
+    return render_template("home.html", profile=profile, projects=project_objs)
 
 
 @app.route("/projects/<project_name>")
 @cache.cached(timeout=50)
 def project_detail(project_name):
     app.logger.info(f"Project {project_name} page accessed")
-    project = fetch_project(project_name)
+    project = PROJECTS[project_name]
     return render_template("project.html", project=project)
 
 

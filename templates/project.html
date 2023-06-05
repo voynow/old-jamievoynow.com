@@ -4,7 +4,7 @@
 <div class="container main-content project-div">
     <div class="formal-div" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
         <div> <!-- New div to encapsulate the project's title and description -->
-            <h1 style="margin-bottom: 0;">{{ project.title }}</h1>
+            <h1 style="margin-bottom: 0;">{{ project.name }}</h1>
             <p style="margin-top: 0;">{{ project.description }}</p>
         </div>
         <div>
@@ -17,7 +17,7 @@
 			<div class="col-md-12">
 				<div id="chat-window" style="overflow:auto">
 					<strong>Computer:</strong>
-					<p>Lets chat about {{ project.title }}! What would you like to know?</p>
+					<p>Lets chat about {{ project.name }}! What would you like to know?</p>
 				</div>				
 				<form>
 					<div class="input-group" id="textarea-group">
@@ -33,15 +33,6 @@
 	
 </div>
 
-<div class="container main-content project-div formal-div">
-	<h3>Overview</h3>
-	<p>{{ project.overview|replace("\n", "<br>")|safe }}</p>
-</div>
-
-<div class="container main-content project-div formal-div">
-	<h3>Code Examples</h3>
-	<pre><code>{{ project.code_example }}</code></pre>
-</div>
 
 <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -51,26 +42,14 @@
     var form = document.querySelector('form');
     var inputField = document.querySelector('#message');
     var chatWindow = document.querySelector('#chat-window');
-	var textBox = document.querySelector('#message');
-	
-	// Function to expand the chat window
-	function expandChatWindow() {
-		chatWindow.style.display = 'block';
-		chatWindow.style.height = "400px";
-	}
 
 	// Function to scroll to the bottom of the chat window
 	function scrollToBottom() {
 		chatWindow.scrollTop = chatWindow.scrollHeight;
 	}
 
-	chatWindow.style.display = 'none';
-
 	// Scroll to the bottom of the chat window whenever a new message is added
 	chatWindow.addEventListener('DOMNodeInserted', scrollToBottom);
-
-	// Add event listener to the chat window
-	textBox.addEventListener('click', expandChatWindow);
     
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -85,7 +64,7 @@
         typingElement.innerHTML = "<strong>Computer:</strong> <em><br>Typing...</em>";
         chatWindow.append(typingElement);
 
-        socket.emit('message', {msg: msg, project: "{{ project.title }}"});
+        socket.emit('message', {msg: msg, project: "{{ project.name }}"});
     });
     
     inputField.addEventListener('keydown', function(e) {
