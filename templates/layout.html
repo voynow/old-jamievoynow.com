@@ -18,6 +18,15 @@
             --div_hover: #353639;
         }
 
+        .formal-div {
+            font-family: 'Georgia', serif;
+            line-height: 1.6; 
+        }
+
+        .formal-div h1 {
+            font-size: 2.5rem;
+        }
+
         body {
             background-color: var(--primary-bg);
             color: var(--text);
@@ -142,11 +151,22 @@
             overflow-x: auto;
             white-space: pre-wrap;
         }
+
+        #chat-window {
+            height: 0;
+            transition: height 0.2s ease-in-out;
+            background-color: var(--textbox-bg);
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
     </style>
 
 <body>
     <header class="mb-3">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark formal-div">
             <a class="navbar-brand" style="margin-left: 15px;" href="/">jamievoynow.com</a>
             <div class="ml-auto">
                 <a href="https://github.com/voynow" target="_blank" class="navbar-brand"><i class="fab fa-github"></i></a>

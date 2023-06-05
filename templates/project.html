@@ -2,59 +2,98 @@
 {% block content %}
 
 <div class="container main-content project-div">
-	<div style="display: flex; justify-content: space-between; align-items: center;">
-		<h1 style="margin-bottom: 0;">{{ project.title }}</h1>
-		<p style="margin-top: 0;"><a href="{{ project.url }}">View project on Github</a></p>
+    <div class="formal-div" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
+        <div> <!-- New div to encapsulate the project's title and description -->
+            <h1 style="margin-bottom: 0;">{{ project.title }}</h1>
+            <p style="margin-top: 0;">{{ project.description }}</p>
+        </div>
+        <div>
+            <a href="{{ project.url }}">View project on Github</a>
+        </div>
+    </div>
+
+	<div class="container" id="chatbox">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="chat-window" style="overflow:auto">
+					<strong>Computer:</strong>
+					<p>Lets chat about {{ project.title }}! What would you like to know?</p>
+				</div>				
+				<form>
+					<div class="input-group" id="textarea-group">
+						<textarea class="form-control textarea-dark" id="message" rows="2" placeholder="Chat with this code!"></textarea>
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-info btn-smaller">Chat</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-	<p>{{ project.description }}</p>
+	
 </div>
 
-
-<div class="container main-content project-div">
+<div class="container main-content project-div formal-div">
 	<h3>Overview</h3>
 	<p>{{ project.overview|replace("\n", "<br>")|safe }}</p>
 </div>
 
-<div class="container main-content project-div">
+<div class="container main-content project-div formal-div">
 	<h3>Code Examples</h3>
 	<pre><code>{{ project.code_example }}</code></pre>
 </div>
 
-<div class="container main-content project-div" id="chatbox">
-	<div class="row">
-		<div class="col-md-12">
-			<form>
-				<div class="input-group" id="textarea-group">
-					<textarea class="form-control textarea-dark" id="message" rows="2"
-						placeholder="Ask me a question! (Still under development)"></textarea>
-					<div class="input-group-append">
-						<button type="submit" class="btn btn-info btn-smaller">Chat</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
 <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-	var socket = io.connect(window.location.protocol + '//' + document.domain + ':' + location.port);
+    var socket = io.connect(window.location.protocol + '//' + document.domain + ':' + location.port);
 
-	document.querySelector('form').addEventListener('submit', function(e) {
-		e.preventDefault();
-		var inputField = document.querySelector('#message');
-		var msg = inputField.value;
-		inputField.value = '';
-		socket.emit('message', msg);
-	});
+    var form = document.querySelector('form');
+    var inputField = document.querySelector('#message');
+    var chatWindow = document.querySelector('#chat-window');
+	var textBox = document.querySelector('#message');
+	
+	// Function to expand the chat window
+	function expandChatWindow() {
+		chatWindow.style.display = 'block';
+		chatWindow.style.height = "400px";
+	}
 
-	socket.on('message', function(msg) {
-		var chatBox = document.querySelector('#chatbox');
-		var paragraph = document.createElement('p');
-		paragraph.textContent = msg;
-		chatBox.append(paragraph);
-	});
+	// Function to scroll to the bottom of the chat window
+	function scrollToBottom() {
+		chatWindow.scrollTop = chatWindow.scrollHeight;
+	}
+
+	chatWindow.style.display = 'none';
+
+	// Scroll to the bottom of the chat window whenever a new message is added
+	chatWindow.addEventListener('DOMNodeInserted', scrollToBottom);
+
+	// Add event listener to the chat window
+	textBox.addEventListener('click', expandChatWindow);
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var msg = inputField.value;
+        inputField.value = '';
+        var userMessageElement = document.createElement('div');
+        userMessageElement.innerHTML = "<div class='text-right'><strong>You:</strong> " + marked.parse(msg) + "</div>";
+        chatWindow.append(userMessageElement);
+        socket.emit('message', {msg: msg, project: "{{ project.title }}"});
+    });
+    
+    inputField.addEventListener('keydown', function(e) {
+        if (e.keyCode == 13 && !e.shiftKey) {
+            e.preventDefault();
+            form.dispatchEvent(new Event('submit'));
+        }
+    });
+    
+    socket.on('message', function(msg) {
+        var messageElement = document.createElement('div');
+        messageElement.innerHTML = "<strong>Computer:</strong> " + marked.parse(msg);
+        chatWindow.append(messageElement);
+    });
 </script>
 
 {% endblock %}
