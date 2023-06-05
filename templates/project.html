@@ -79,6 +79,12 @@
         var userMessageElement = document.createElement('div');
         userMessageElement.innerHTML = "<div class='text-right'><strong>You:</strong> " + marked.parse(msg) + "</div>";
         chatWindow.append(userMessageElement);
+
+        var typingElement = document.createElement('div');
+        typingElement.id = "typing";
+        typingElement.innerHTML = "<strong>Computer:</strong> <em><br>Typing...</em>";
+        chatWindow.append(typingElement);
+
         socket.emit('message', {msg: msg, project: "{{ project.title }}"});
     });
     
@@ -90,6 +96,10 @@
     });
     
     socket.on('message', function(msg) {
+        // Remove the "typing" message when a message from the chatbot arrives
+        var typingElement = document.getElementById("typing");
+        typingElement.parentNode.removeChild(typingElement);
+        
         var messageElement = document.createElement('div');
         messageElement.innerHTML = "<strong>Computer:</strong> " + marked.parse(msg);
         chatWindow.append(messageElement);
