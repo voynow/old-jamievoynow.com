@@ -1,39 +1,41 @@
-# My Personal Developer Site
+# Jamie Voynow Personal Portfolio and Code Conversation
 
-A personal website, all about my projects and journey into the world of software developement
+Jamie Voynow Personal Portfolio and Code Conversation is a web application built with Flask and Flask-SocketIO. This project showcases the developer's resume and portfolio, as well as allows users to chat with an AI about specific repositories using OpenAI's LLM model.
 
-## Features
+## Table of Contents
 
-- Personal info about myself
-- High level view of my portfolio
-- Project details
-- Ask Jamie a question chatGPT style (Under development)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [License](#license)
 
-## Technologies
+## Installation
 
-- Flask
-- Jinja2
-- Gunicorn
-- Flask-Caching
-- CSS (Bootstrap)
+To get started, clone this repository and install the required dependencies by running `pip install -r requirements.txt`. You'll also need to create a `.env` file to store your GitHub access token as `GH_TOKEN`.
 
-## File Structure
+## Usage
+
+To run the web application locally, execute the following command:
+
 ```
-app.py                 - Main application logic.
-Procfile               - Configuration for gunicorn.
-requirements.txt       - Required packages.
-
-/templates              - Contains Jinja2 templates.
-    404.html           - 404 error page template.
-    home.html          - Homepage template showing profile and project listings.
-    project.html       - Template to display detailed project information.
-    layout.html        - Base layout template used by other templates.
-
-/static                 - Contains static files like images, and styles.min.css file.
-
-app.log                 - Log file created when running the application.
+$ flask run
 ```
+
+This will launch a local development server at `http://127.0.0.1:5000` from where you can browse the application.
+
+## Project Structure
+
+- `app.py`: Main Flask application containing all the routes and socket events.
+- `exclude.toml`: Configuration for `git2vec` package.
+- `Procfile`: Configuration file for deployment on Heroku using Gunicorn and WebSocket workers.
+- `requirements.txt`: Python package dependencies.
+- `templates`: Directory containing all the Jinja2 templates for the application.
+  - `404.html`: 404 error page.
+  - `home.html`: Main home page template, showcasing Jamie's profile and projects.
+  - `layout.html`: The base layout template used by the other templates.
+  - `project.html`: The project detail page and chat interface for the selected project.
+- `static`: Directory containing any static files (e.g., images) used by the project.
 
 ## License
 
-[MIT License](https://opensource.org/licenses/MIT)
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
