@@ -6,6 +6,7 @@ import json
 import logging
 import openai
 import os
+import random
 from repo_chat import chat_utils
 import requests
 
@@ -71,7 +72,6 @@ def fetch_projects_info():
 
 def get_computer_response(data):
     """Chat with an LLM given the repo as context"""
-    print(data)
     repo_name = f"https://github.com/voynow/{data['project']}"
     raw_repo = loader.load(repo_name, return_str=True)
 
@@ -81,6 +81,23 @@ def get_computer_response(data):
     except openai.error.InvalidRequestError:
         response = "I'm sorry, this repo is not supported yet due to context length limitations. We are actively working on fixing this!"
     return response
+
+
+def fetch_recommended_queries(project_name):
+    """Fetch recommended queries for a given repository"""
+    queries = [
+        "What does this code do?", 
+        "Choose an important file and explain it.",
+        "Explain this code to me like I'm five.",
+        "Write a poem about this code.",
+        "Summarize this repo in one sentence.",
+        "How can I use this code?",
+        "Tell me a story about this code.",
+      ]
+    
+    # select 3 random queries
+    queries = random.sample(queries, 3)
+    return queries
 
 
 app = Flask(__name__)
@@ -116,6 +133,13 @@ def project_detail(project_name):
 def handle_message(data):
     response = get_computer_response(data)
     send(response, broadcast=True)
+
+
+@app.route("/recommended_queries/<project_name>")
+def recommended_queries(project_name):
+    """API endpoint for fetching recommended queries for a given repository"""
+    queries = fetch_recommended_queries(project_name)
+    return json.dumps(queries)
 
 
 @app.errorhandler(404)

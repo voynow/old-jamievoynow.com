@@ -18,7 +18,8 @@
 				<div id="chat-window" style="overflow:auto">
 					<strong>Computer:</strong>
 					<p>Lets chat about {{ project.name }}! What would you like to know?</p>
-				</div>				
+				</div>
+                <div id="recommended-queries" class="recommended-queries"></div>
 				<form>
 					<div class="input-group" id="textarea-group">
 						<textarea class="form-control textarea-dark" id="message" rows="2" placeholder="Chat with this code!"></textarea>
@@ -83,6 +84,31 @@
         messageElement.innerHTML = "<strong>Computer:</strong> " + marked.parse(msg);
         chatWindow.append(messageElement);
     });
+
+    function executeQuery(query) {
+        var inputField = document.querySelector('#message');
+        var form = document.querySelector('form');
+        inputField.value = query;
+        form.dispatchEvent(new Event('submit'));
+    }
+
+    function displayRecommendedQueries(queries) {
+        var queriesDiv = document.getElementById('recommended-queries');
+        queries.forEach(query => {
+            var queryElement = document.createElement('button');
+            queryElement.textContent = query;
+            queryElement.onclick = function() { executeQuery(query); };
+            queriesDiv.appendChild(queryElement);
+        });
+    }
+
+    window.onload = function() {
+        var repoName = "{{ project.name }}";
+        fetch('/recommended_queries/' + repoName)
+            .then(response => response.json())
+            .then(data => displayRecommendedQueries(data));
+    }
+
 </script>
 
 {% endblock %}
