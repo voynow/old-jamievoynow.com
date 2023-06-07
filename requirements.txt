@@ -7,5 +7,5 @@ Flask-SocketIO
 gevent
 gevent-websocket
 git2vec
-repo_chat
+llm-blocks
 openai
