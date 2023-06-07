@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container main-content project-div">
+    <div class="formal-div" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
+        <div> <!-- New div to encapsulate the project's title and description -->
+            <h1 style="margin-bottom: 0;">{{ project.name }}</h1>
+            <p style="margin-top: 0;">{{ project.description }}</p>
+        </div>
+        <div>
+            <a href="{{ project.url }}">View project on Github</a>
+        </div>
+    </div>
+
+	<div class="container" id="chatbox">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="chat-window" style="overflow:auto">
+					<strong>Computer:</strong>
+					<p>Lets chat about {{ project.name }}! What would you like to know?</p>
+				</div>
+                <div id="recommended-queries" class="recommended-queries"></div>
+				<form>
+					<div class="input-group" id="textarea-group">
+						<textarea class="form-control textarea-dark" id="message" rows="2" placeholder="Chat with this code!"></textarea>
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-info btn-smaller">Chat</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    var socket = io.connect(window.location.protocol + '//' + document.domain + ':' + location.port);
+
+    var form = document.querySelector('form');
+    var inputField = document.querySelector('#message');
+    var chatWindow = document.querySelector('#chat-window');
+
+	// Function to scroll to the bottom of the chat window
+	function scrollToBottom() {
+		chatWindow.scrollTop = chatWindow.scrollHeight;
+	}
+
+	// Scroll to the bottom of the chat window whenever a new message is added
+	chatWindow.addEventListener('DOMNodeInserted', scrollToBottom);
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var msg = inputField.value;
+        inputField.value = '';
+        var userMessageElement = document.createElement('div');
+        userMessageElement.innerHTML = "<div class='text-right'><strong>You:</strong> " + marked.parse(msg) + "</div>";
+        chatWindow.append(userMessageElement);
+
+        var typingElement = document.createElement('div');
+        typingElement.id = "typing";
+        typingElement.innerHTML = "<strong>Computer:</strong> <em><br>Typing...</em>";
+        chatWindow.append(typingElement);
+
+        socket.emit('message', {msg: msg, project: "{{ project.name }}"});
+    });
+    
+    inputField.addEventListener('keydown', function(e) {
+        if (e.keyCode == 13 && !e.shiftKey) {
+            e.preventDefault();
+            form.dispatchEvent(new Event('submit'));
+        }
+    });
+    
+    socket.on('message', function(msg) {
+        // Remove the "typing" message when a message from the chatbot arrives
+        var typingElement = document.getElementById("typing");
+        typingElement.parentNode.removeChild(typingElement);
+        
+        var messageElement = document.createElement('div');
+        messageElement.innerHTML = "<strong>Computer:</strong> " + marked.parse(msg);
+        chatWindow.append(messageElement);
+    });
+
+    function executeQuery(query) {
+        var inputField = document.querySelector('#message');
+        var form = document.querySelector('form');
+        inputField.value = query;
+        form.dispatchEvent(new Event('submit'));
+    }
+
+    function displayRecommendedQueries(queries) {
+        var queriesDiv = document.getElementById('recommended-queries');
+        queries.forEach(query => {
+            var queryElement = document.createElement('button');
+            queryElement.textContent = query;
+            queryElement.onclick = function() { executeQuery(query); };
+            queriesDiv.appendChild(queryElement);
+        });
+    }
+
+    window.onload = function() {
+        var repoName = "{{ project.name }}";
+        fetch('/recommended_queries/' + repoName)
+            .then(response => response.json())
+            .then(data => displayRecommendedQueries(data));
+    }
+
+</script>
+
+{% endblock %}
