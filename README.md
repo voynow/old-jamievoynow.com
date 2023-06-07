@@ -1,41 +1,52 @@
-# Jamie Voynow Personal Portfolio and Code Conversation
+# GitHub Portfolio WebApp
 
-Jamie Voynow Personal Portfolio and Code Conversation is a web application built with Flask and Flask-SocketIO. This project showcases the developer's resume and portfolio, as well as allows users to chat with an AI about specific repositories using OpenAI's LLM model.
+A web application to display a user's GitHub portfolio with an interactive chat for Q&A about the user's repositories.
 
 ## Table of Contents
 
+- [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Project Structure](#project-structure)
-- [License](#license)
+- [Contributing](#contributing)
+
+## Features
+
+- Displays a GitHub portfolio with pinned repositories
+- Interactive chat system for users to ask questions about the repository or code
+- Generates recommended questions for the user to ask
+- Websocket support for real-time chat
+
+## Requirements
+
+- [Python 3.8](https://www.python.org/downloads/release/python-380/)
+- [pip](https://pypi.org/project/pip/)
 
 ## Installation
 
-To get started, clone this repository and install the required dependencies by running `pip install -r requirements.txt`. You'll also need to create a `.env` file to store your GitHub access token as `GH_TOKEN`.
+1. Clone the GitHub repository:
+   ```
+   git clone https://github.com/voynow/jamievoynow.com.git
+   ```
+2. Change into the project folder and install the required packages:
+   ```
+   cd jamievoynow.com
+   pip install -r requirements.txt
+   ```
+3. Set up required environment variables:
+   - `GH_TOKEN`: your GitHub personal access token (used for GraphQL queries).
+   - `OPENAI_API_KEY`: your OpenAI API key (used for generating chat responses).
 
 ## Usage
 
-To run the web application locally, execute the following command:
+To run the application, execute the following command in the project folder:
 
 ```
-$ flask run
+python src/app.py
 ```
 
-This will launch a local development server at `http://127.0.0.1:5000` from where you can browse the application.
+The application will be accessible at http://localhost:5000/
 
-## Project Structure
+## Contributing
 
-- `app.py`: Main Flask application containing all the routes and socket events.
-- `exclude.toml`: Configuration for `git2vec` package.
-- `Procfile`: Configuration file for deployment on Heroku using Gunicorn and WebSocket workers.
-- `requirements.txt`: Python package dependencies.
-- `templates`: Directory containing all the Jinja2 templates for the application.
-  - `404.html`: 404 error page.
-  - `home.html`: Main home page template, showcasing Jamie's profile and projects.
-  - `layout.html`: The base layout template used by the other templates.
-  - `project.html`: The project detail page and chat interface for the selected project.
-- `static`: Directory containing any static files (e.g., images) used by the project.
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+Contributions are welcome! If you have any ideas or improvements, feel free to create a pull request.
