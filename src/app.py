@@ -1,7 +1,7 @@
-import config
+import src.config as config
 import json
 import logging
-import services
+import src.services as services
 
 from flask import Flask, render_template
 from flask_caching import Cache
