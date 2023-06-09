@@ -2,8 +2,8 @@
 {% block content %}
 
 <div class="container main-content project-div">
-    <div class="formal-div" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;"> <!-- Increased margin-bottom -->
-        <div> <!-- New div to encapsulate the project's title and description -->
+    <div class="formal-div" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div>
             <h1 style="margin-bottom: 0;">{{ project.name }}</h1>
             <p style="margin-top: 0;">{{ project.description }}</p>
         </div>
@@ -11,7 +11,6 @@
             <a href="{{ project.url }}">View project on Github</a>
         </div>
     </div>
-
 	<div class="container" id="chatbox">
 		<div class="row">
 			<div class="col-md-12">
@@ -31,9 +30,7 @@
 			</div>
 		</div>
 	</div>
-	
 </div>
-
 
 <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -44,12 +41,10 @@
     var inputField = document.querySelector('#message');
     var chatWindow = document.querySelector('#chat-window');
 
-	// Function to scroll to the bottom of the chat window
 	function scrollToBottom() {
 		chatWindow.scrollTop = chatWindow.scrollHeight;
 	}
 
-	// Scroll to the bottom of the chat window whenever a new message is added
 	chatWindow.addEventListener('DOMNodeInserted', scrollToBottom);
     
     form.addEventListener('submit', function(e) {
@@ -76,7 +71,6 @@
     });
     
     socket.on('message', function(msg) {
-        // Remove the "typing" message when a message from the chatbot arrives
         var typingElement = document.getElementById("typing");
         typingElement.parentNode.removeChild(typingElement);
         

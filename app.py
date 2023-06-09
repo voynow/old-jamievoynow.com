@@ -53,9 +53,3 @@ def recommended_queries(project_name):
     """API endpoint for fetching recommended queries for a given repository"""
     queries = services.fetch_recommended_queries(project_name)
     return json.dumps(queries)
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    app.logger.error("Page not found")
-    return render_template("404.html"), 404
