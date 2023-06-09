@@ -6,189 +6,151 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-bg: #262626;
-            --secondary-bg: #2c2c2c;
-            --textbox-bg: #343434;
-            --border: #18191A;
-            --text: #e6e6e6;
-            --accent: #4676be;
-            --hover: #80bbff;
-            --div_hover: #353639;
-        }
+<style>
+    :root {
+        --primary-bg: #262626;
+        --secondary-bg: #2c2c2c;
+        --textbox-bg: #343434;
+        --border: #18191A;
+        --text: #e6e6e6;
+        --accent: #4676be;
+        --hover: #80bbff;
+        --div_hover: #353639;
+    }
 
-        .formal-div {
-            font-family: 'Georgia', serif;
-            line-height: 1.6; 
-        }
+    body {
+        background-color: var(--primary-bg);
+        color: var(--text);
+        padding-bottom: 60px;
+        font-family: 'Georgia', serif;
+        line-height: 1.6; 
+    }
 
-        .formal-div h1 {
-            font-size: 2.5rem;
-        }
+    a {
+        color: var(--accent);
+    }
 
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text);
-            padding-bottom: 60px;
-        }
+    a:hover {
+        color: var(--hover);
+    }
 
-        a {
-            color: var(--accent);
-        }
+    img.profile-picture {
+        border-radius: 50%;
+        width: 175px;
+        height: 175px;
+        border: 3px solid var(--accent);
+        padding: 0;
+        background: none;
+    }
 
-        a:hover {
-            color: var(--hover);
-        }
+    .card,
+    .project-div,
+    #chat-window {
+        background-color: var(--textbox-bg);
+        color: var(--text);
+        border: var(--border);
+        overflow: auto;
+        transition: transform 0.5s, box-shadow 0.5s;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+    }
 
-        .profile-picture {
-            border-radius: 50%;
-            width: 175px;
-            height: 175px;
-            border: 3px solid var(--accent);
-            padding: 0;
-            background: none;
-        }
+    .card:hover,
+    .project-div:hover {
+        box-shadow: 0px 0px 10px 2px var(--div_hover);
+    }
 
-        .card,
-        .project-div {
-            background-color: var(--textbox-bg);
-            color: var(--text);
-            border: var(--border);
-            overflow: auto;
-            transition: transform 0.5s, box-shadow 0.5s;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
+    .btn,
+    .recommended-queries button {
+        padding: 0.2rem 0.5rem;
+        background-color: var(--accent);
+        border: none;
+        color: var(--text);
+        transition: background-color 0.3s;
+    }
 
-        .card:hover,
-        .project-div:hover {
-            transform: scale(1.01);
-            box-shadow: 0px 0px 10px 2px var(--div_hover);
-        }
+    .btn:hover,
+    .recommended-queries button:hover {
+        background-color: var(--hover);
+    }
 
-        .btn-larger {
-            padding: 0.2rem 0.5rem;
-            background-color: var(--accent);
-            border: none;
-            color: var(--text);
-            transition: background-color 0.3s;
-        }
+    .navbar {
+        background-color: var(--secondary-bg);
+        padding: 10px 0;
+    }
 
-        .btn-larger:hover {
-            background-color: var(--hover);
-        }
+    .navbar a:hover {
+        color: var(--hover);
+    }
 
-        .navbar {
-            background-color: var(--secondary-bg);
-            padding: 10px 0;
-        }
+    .container.main-content {
+        margin: 30px auto;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: var(--secondary-bg);
+    }
 
+    .textarea-dark:focus-visible,
+    .textarea-dark {
+        background-color: var(--textbox-bg);
+        color: var(--text);
+        border: var(--border);
+    }
 
-        .navbar-brand {
-            font-family: 'Roboto', sans-serif;
-            text-shadow: 2px 2px 4px var(--accent);
-        }
+    #textarea-group {
+        width: 90%;
+        margin: 0 auto;
+    }
 
-        .navbar a:hover {
-            color: var(--hover);
-        }
+    footer {
+        background-color: var(--primary-bg);
+        padding: 10px 0;
+        margin-top: 30px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
 
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark {
-            background-color: var(--secondary-bg) !important;
-        }
+    #chat-window {
+        height: auto;
+        min-height: 300px;
+        transition: height 0.2s ease-in-out;
+        background-color: var(--textbox-bg);
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
 
-        .container.main-content {
-            margin: 30px auto;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: var(--secondary-bg);
-        }
+    .recommended-queries {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
 
-        .textarea-dark {
-            background-color: var(--textbox-bg);
-            color: var(--text);
-            border: var(--border);
-        }
+    .recommended-queries button {
+        background: #343a40; 
+        color: #ffffff; 
+        border: none; 
+        margin: 2px;
+        border-radius: 10px;
+        padding: 5px;
+        transition: background-color 0.3s;
+    }
 
-        .textarea-dark:focus-visible {
-            background-color: var(--textbox-bg);
-            color: var(--text);
-            border: var(--border);
-        }
-
-        #textarea-group {
-            width: 90%;
-            margin: 0 auto;
-        }
-
-        .btn-smaller {
-            padding: 0.1rem 0.2rem;
-            margin-left: 5px;
-            background-color: var(--accent);
-            border: none;
-        }
-        .btn-smaller:hover {
-            background-color: var(--hover);
-        }
-
-        footer {
-            background-color: var(--primary-bg);
-            padding: 10px 0;
-            margin-top: 30px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-        }
-
-        pre {
-            background-color: var(--textbox-bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 10px;
-            overflow-x: auto;
-            white-space: pre-wrap;
-        }
-
-        #chat-window {
-            height: auto;
-            min-height: 300px;
-            background-color: var(--textbox-bg);
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        .recommended-queries {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-top: 3px;
-            margin-bottom: 3px;
-        }
-
-        .recommended-queries button {
-            background: #343a40; 
-            color: #ffffff; 
-            border: none;
-            border-radius: 12px;
-            padding: 5px 10px;
-            margin: 5px;
-            cursor: pointer;
-        }
-
-        .recommended-queries button:hover {
-            background: #495057;
-        }
-    </style>
+    .recommended-queries button:hover {
+        background-color: var(--hover);
+    }
+</style>
 
 <body>
     <header class="mb-3">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark formal-div">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" style="margin-left: 15px;" href="/">jamievoynow.com</a>
             <div class="ml-auto">
                 <a href="https://github.com/voynow" target="_blank" class="navbar-brand"><i class="fab fa-github"></i></a>
