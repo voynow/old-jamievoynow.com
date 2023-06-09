@@ -1,17 +1,6 @@
 # Personal Portfolio and Project Chatbot
 
-This repository contains the source code for a personal portfolio website. The main feature of the website is that it allows users to chat with a chatbot about the owner's pinned projects available on GitHub. The chatbot uses OpenAI's GPT-3 models to provide on-topic responses.
-
-
-## Getting Started
-
-These instructions will help you set up the project on your local machine for development and testing purposes.
-
-### Prerequisites
-
-Here are the required dependencies for this project:
-
-* Python 3.6 or higher (**`app.py`** and other Python scripts depend on Python 3.6+)
+Portfolio website featuring a chatbot for talking with any of my pinned projects on Github.
 
 ### Installing
 
@@ -44,7 +33,6 @@ Here are the required dependencies for this project:
    flask run
    ```
 
-Now, the portfolio website is running on your local machine at `http://localhost:5000`.
 
 ## Features
 
