@@ -1,0 +1,8 @@
+ignore = [
+    "static",
+    "venv",
+    "__pycache__",
+    "app.log",
+    ".env",
+    ".git"
+]
