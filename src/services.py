@@ -33,11 +33,13 @@ def get_computer_response(project_name, query):
     """Chat with an LLM given the repo as context"""
     github_url = config.PROFILE_INFO["github"]
     repo_url = f"{github_url}/{project_name}"
-    repo = loader.load(repo_url, return_str=True)
+    repo_docs = loader.pull_code_from_repo(repo_url)
+    repo_str = loader.docs_to_str(repo_docs)
+    json.dump(repo_str, open("repo_str.json", "w"))
 
     try:
         project_chat_chain = chat_utils.GenericChain(template=config.TEMPLATE)
-        response = project_chat_chain(repo_url=repo_url, repo=repo, query=query)["text"]
+        response = project_chat_chain(repo_url=repo_url, repo=repo_str, query=query)["text"]
     except openai.error.InvalidRequestError:
         response = "I'm sorry, this repo is not supported yet due to context length limitations. We are actively working on fixing this!"
     return response
