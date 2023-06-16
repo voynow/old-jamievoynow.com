@@ -19,10 +19,16 @@ cache = Cache(app, config={"CACHE_TYPE": "simple"})
 # Configure logging
 handler = logging.FileHandler("app.log")
 handler.setLevel(logging.INFO)
-app.logger.addHandler(handler)
+logging.basicConfig(
+    filename="app.log",
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s - %(filename)s:%(lineno)d - %(funcName)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+)
+app.logger.addHandler(logging.StreamHandler())
 
 # Fetch projects from GitHub
-PROJECTS = services.fetch_projects_info()
+PROJECTS = services.fetch_projects_info(app)
 
 
 @app.route("/")
@@ -44,12 +50,12 @@ def project_detail(project_name):
 
 @socketio.on("message")
 def handle_message(data):
-    response = services.get_computer_response(data['project'], data['msg'])
+    response = services.get_computer_response(app, data["project"], data["msg"])
     send(response, broadcast=True)
 
 
 @app.route("/recommended_queries/<project_name>")
 def recommended_queries(project_name):
     """API endpoint for fetching recommended queries for a given repository"""
-    queries = services.fetch_recommended_queries(project_name)
+    queries = services.fetch_recommended_queries(app, project_name)
     return json.dumps(queries)

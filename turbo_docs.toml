@@ -4,5 +4,6 @@ ignore = [
     "__pycache__",
     "app.log",
     ".env",
-    ".git"
+    ".git",
+    "repodata"
 ]
