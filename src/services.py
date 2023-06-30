@@ -40,7 +40,7 @@ def get_computer_response(app, project_name, query):
     repo_str = loader.docs_to_str(repo_docs)
 
     try:
-        project_chat_chain = chat_utils.GenericChain(template=config.TEMPLATE)
+        project_chat_chain = chat_utils.GenericChain(template=config.TEMPLATE, model_name="gpt-3.5-turbo-16k")
         response = project_chat_chain(repo_url=repo_url, repo=repo_str, query=query)["text"]
         app.logger.error(f"Received response {response}")
     except openai.error.InvalidRequestError:
