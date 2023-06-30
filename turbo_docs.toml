@@ -1,9 +1,9 @@
 ignore = [
-    "static",
     "venv",
-    "__pycache__",
-    "app.log",
-    ".env",
+    "node_modules",
     ".git",
-    "repodata"
+    "*.png",
+    "*.ico",
+    "package-lock.json",
+    "logo.svg",
 ]

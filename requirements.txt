@@ -1,11 +1,1 @@
-black
-Flask
-gunicorn
-Jinja2
-Flask-Caching
-Flask-SocketIO
-gevent
-gevent-websocket
-git2vec==0.1.8
-llm-blocks
-openai
+flask
