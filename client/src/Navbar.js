@@ -27,22 +27,23 @@ function Navbar() {
     );
 }
 
-
 const navLinks = {
     listStyle: 'none',
     display: 'flex',
-    justifyContent: 'space-evenly'
+    justifyContent: 'flex-start'
 }
 
 const navStyle = {
-    background: '#0b121f',
+    background: '#e0e0e0',
     padding: '20px'
 }
 
 const linkStyle = {
-    color: '#61dafb',
-    textDecoration: 'none'
+    color: '#000000',
+    textDecoration: 'none',
+    paddingRight: '20px'
 }
+
 
 
 export default Navbar;

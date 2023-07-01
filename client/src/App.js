@@ -17,7 +17,7 @@ function App() {
 
 const styles = {
     App: {
-        backgroundColor: '#0f172a',
+        backgroundColor: '#f0f0f0',
         height: '100vh',
     },
 };

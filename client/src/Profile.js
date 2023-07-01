@@ -24,13 +24,17 @@ function Profile() {
 }
 
 const profileStyle = {
-  background: '#121a2e',
-  color: '#a1accd',
+  background: '#f0f0f0', // Changed from '#121a2e' to '#f0f0f0' for a light gray background
+  color: '#000000', // Changed from '#a1accd' to '#000000' for black text
   display: 'flex',
-  height: 'auto', // Change this to auto or provide a specific height
-  padding: '20px', // Provide some padding
+  height: 'auto',
+  padding: '20px',
   flexDirection: 'column',
   alignItems: 'center',
+}
+
+const textStyle = {
+  color: '#000000' // Changed from '#61dafb' to '#000000' for black text
 }
 
 const imageStyle = {
@@ -38,10 +42,6 @@ const imageStyle = {
   height: '150px',
   borderRadius: '50%',
   marginBottom: '20px'
-}
-
-const textStyle = {
-  color: '#61dafb'
 }
 
 export default Profile;

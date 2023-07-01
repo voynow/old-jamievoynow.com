@@ -1,62 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Projects() {
-  return (
-    <div style={projectsStyle}>
-      <h1 style={textStyle}>Projects</h1>
-      <div style={projectContainer}>
-        <div style={projectStyle}>
-          <h2 style={projectTitle}>Project 1</h2>
-          <p style={projectDescription}>Description for Project 1</p>
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        fetch('/projects') // assuming your Flask app has an endpoint at /projects
+            .then(response => response.json())
+            .then(data => setProjects(data));
+    }, []);
+
+    return (
+        <div style={projectsStyle}>
+            <h1 style={textStyle}>Projects</h1>
+            <div style={projectContainer}>
+                {projects.map((project, index) => (
+                    <div key={index} style={projectStyle}>
+                        <h2 style={projectTitle}>{project.title}</h2>
+                        <p style={projectDescription}>{project.description}</p>
+                    </div>
+                ))}
+            </div>
         </div>
-        <div style={projectStyle}>
-          <h2 style={projectTitle}>Project 2</h2>
-          <p style={projectDescription}>Description for Project 2</p>
-        </div>
-        <div style={projectStyle}>
-          <h2 style={projectTitle}>Project 3</h2>
-          <p style={projectDescription}>Description for Project 3</p>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 const projectsStyle = {
-  background: '#121a2e',
-  color: '#a1accd',
-  padding: '20px',
-  margin: '20px',
-  width: '90%',
+    background: '#f2f2f2',
+    color: '#000000',
+    padding: '20px',
+    margin: '20px auto', // added auto to center the section
+    width: '90%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center', // center the content
 }
 
 const projectContainer = {
   display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'space-around',
+  alignItems: 'flex-start',
+  width: '100%',
 }
 
 const projectStyle = {
-  background: '#1e2c41',
+  background: '#ffffff',
   borderRadius: '10px',
-  flex: 1,
-  padding: '10px',
+  width: '45%',
+  padding: '20px',
   margin: '10px',
   boxSizing: 'border-box',
   boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
   transition: '0.3s',
-  color: '#a1accd',
-  textAlign: 'center'  // to center the text within each project
+  color: '#000000',
+  textAlign: 'center',
+  marginBottom: '20px'
 }
 
 const projectTitle = {
-  color: '#61dafb',
+    color: '#000000',
+    fontSize: '1.5em', // increased font size for a more modern look
 }
 
 const projectDescription = {
-  color: '#a1accd',
+    color: '#000000',
 }
 
 const textStyle = {
-  color: '#61dafb'
+    color: '#000000',
+    marginBottom: '20px' // add some space below the heading
 }
 
 export default Projects;

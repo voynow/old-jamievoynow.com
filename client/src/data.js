@@ -13,5 +13,4 @@ export const projects = [
     link: "https://github.com/your_username/project2",
     description: "This is a short description for Project 2."
   },
-  // add more projects as needed...
 ];
