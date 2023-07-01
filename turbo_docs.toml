@@ -11,4 +11,6 @@ ignore = [
     ".gitignore",
     ".requirements.txt",
     "README.md",
+    ".env",
+    "__pycache__",
 ]

@@ -15,7 +15,7 @@ function Projects() {
             <div style={projectContainer}>
                 {projects.map((project, index) => (
                     <div key={index} style={projectStyle}>
-                        <h2 style={projectTitle}>{project.title}</h2>
+                        <h2 style={projectTitle}>{project.name}</h2>
                         <p style={projectDescription}>{project.description}</p>
                     </div>
                 ))}
@@ -28,35 +28,37 @@ const projectsStyle = {
     background: '#f2f2f2',
     color: '#000000',
     padding: '20px',
-    margin: '20px auto', // added auto to center the section
+    margin: '20px auto',
     width: '90%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center', // center the content
+    alignItems: 'center',
 }
-
 const projectContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'space-around',
-  alignItems: 'flex-start',
-  width: '100%',
-}
-
-const projectStyle = {
-  background: '#ffffff',
-  borderRadius: '10px',
-  width: '45%',
-  padding: '20px',
-  margin: '10px',
-  boxSizing: 'border-box',
-  boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-  transition: '0.3s',
-  color: '#000000',
-  textAlign: 'center',
-  marginBottom: '20px'
-}
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    width: '100%',
+    overflowX: 'auto',
+  }
+  
+  const projectStyle = {
+    background: '#ffffff',
+    borderRadius: '10px',
+    width: '20%',
+    height: '250px',
+    padding: '20px',
+    margin: '10px',
+    boxSizing: 'border-box',
+    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+    transition: '0.3s',
+    color: '#000000',
+    textAlign: 'center',
+    marginBottom: '20px'
+  }
+  
 
 const projectTitle = {
     color: '#000000',

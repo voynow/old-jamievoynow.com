@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import services
 
 app = Flask(__name__)
 
@@ -8,16 +9,7 @@ def home():
 
 @app.route('/projects')
 def projects():
-    return jsonify([
-        {
-            "title": "Project 1",
-            "description": "This is a short description for Project 1."
-        },
-        {
-            "title": "Project 2",
-            "description": "This is a short description for Project 2."
-        },
-    ])
+    return services.fetch_projects_info(app)
 
 if __name__ == "__main__":
     app.run(debug=True)
