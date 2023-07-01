@@ -1,9 +1,14 @@
 ignore = [
-    "venv",
     "node_modules",
+    "build",
+    "dist",
+    "coverage",
+    "venv",
     ".git",
-    "*.png",
-    "*.ico",
+    "public",
     "package-lock.json",
-    "logo.svg",
+    "turbo_docs.toml",
+    ".gitignore",
+    ".requirements.txt",
+    "README.md",
 ]
