@@ -1,14 +1,16 @@
 import React from 'react';
 import Navbar from './Navbar';
-import Projects from './Projects';
+import Portfolio from './Portfolio';
 import Skills from './Skills';
 
 function App() {
   return (
     <div style={styles.App}>
       <Navbar />
-      <Skills />
-      <Projects />
+      <Portfolio />
+      <div style={styles.SkillsContainer}>
+        <Skills />
+      </div>
     </div>
   );
 }
@@ -19,7 +21,7 @@ const styles = {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start'
+        justifyContent: 'space-between'
     }
 };
 

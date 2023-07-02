@@ -1,3 +1,4 @@
+from flask import url_for
 import requests
 import os
 import config
@@ -23,6 +24,7 @@ def fetch_projects_info(app):
             "name": node["node"]["name"],
             "description": node["node"]["description"],
             "url": node["node"]["url"],
+            "imageUrl": url_for('static', filename=f'assets/{node["node"]["name"]}.png'),
         }
         for node in edges
     ]

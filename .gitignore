@@ -24,3 +24,4 @@ yarn-error.log*
 
 flask/venv
 .env
+__pycache__

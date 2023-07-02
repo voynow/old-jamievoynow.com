@@ -13,5 +13,5 @@ ignore = [
     "README.md",
     ".env",
     "__pycache__",
-    "assets"
+    "assets",
 ]

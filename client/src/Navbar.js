@@ -21,17 +21,17 @@ function Navbar() {
                 )}
                 <ul style={navLinks}>
                     <li>
-                        <a href="https://github.com/your_username" style={linkStyle}>
+                        <a href="https://github.com/voynow" style={linkStyle}>
                             <FaGithub /> GitHub
                         </a>
                     </li>
                     <li>
-                        <a href="https://linkedin.com/in/your_username" style={linkStyle}>
+                        <a href="https://linkedin.com/in/voynow" style={linkStyle}>
                             <FaLinkedin /> LinkedIn
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/your_username" style={linkStyle}>
+                        <a href="https://twitter.com/jamievoynow" style={linkStyle}>
                             <FaTwitter /> Twitter
                         </a>
                     </li>
@@ -58,13 +58,14 @@ const navLinks = {
 const navStyle = {
     background: '#f0f0f0',
     padding: '20px',
-    marginBottom: '20px'
 }
 
 const linkStyle = {
-    color: '#000000',
+    color: '#2c2c2c',
     textDecoration: 'none',
-    paddingRight: '20px'
+    paddingRight: '20px',
+    fontFamily: "system-ui",
+    fontSize: '1.1em',
 }
 
 const profileStyle = {
@@ -81,7 +82,9 @@ const imageStyle = {
 }
 
 const textStyle = {
-    color: '#000000',
+    color: '#2c2c2c',
+    fontSize: '1.5em',
+    fontFamily: "system-ui",
     marginLeft: '10px',
 }
 

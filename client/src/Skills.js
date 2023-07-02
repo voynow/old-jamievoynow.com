@@ -28,7 +28,7 @@ const Skills = () => {
       {skills.map((skill, index) => (
         <div key={index} style={skillContainerStyle}>
           <img src={skill.logo} alt={skill.name} style={logoStyle} />
-          <p>{skill.name}</p>
+          <p style={skillTextStyle}>{skill.name}</p>
         </div>
       ))}
     </div>
@@ -58,6 +58,11 @@ const logoStyle = {
     marginBottom: '10px',
     borderRadius: '15%',
   };
+
+const skillTextStyle = {
+  fontFamily: 'system-ui',
+  color: '#2c2c2c',
+};
   
 
 export default Skills;

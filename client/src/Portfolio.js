@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 function Projects() {
     const [projects, setProjects] = useState([]);
 
@@ -15,14 +14,21 @@ function Projects() {
             <div style={projectContainer}>
                 {projects.map((project, index) => (
                     <div key={index} className="project-block">
-                        <h2 style={projectTitle}>{project.name}</h2>
-                        <p style={projectDescription}>{project.description}</p>
+                        <img src={project.imageUrl} alt={project.name} style={imageStyle} />
+                        <div style={textContainer}>
+                            <h2 style={projectTitle}>{project.name}</h2>
+                            <p style={projectDescription}>{project.description}</p>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
     );
 }
+
+const textContainer = {
+    padding: '10px 20px',
+};
 
 const projectsStyle = {
     background: '#f0f0f0',
@@ -32,7 +38,9 @@ const projectsStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-}
+    marginBottom: '50px'
+};
+
 const projectContainer = {
     display: 'flex',
     flexDirection: 'row',
@@ -41,21 +49,29 @@ const projectContainer = {
     alignItems: 'flex-start',
     width: '100%',
     overflowX: 'auto',
-  }
-  
+};
 
 const projectTitle = {
-    color: '#000000',
+    color: '#2c2c2c',
+    fontFamily: "system-ui",
     fontSize: '1.5em',
-}
+};
 
 const projectDescription = {
-    color: '#000000',
-}
+    fontFamily: "system-ui",
+    color: '#2c2c2c',
+};
 
 const textStyle = {
-    color: '#000000',
-    marginBottom: '20px'
-}
+    color: '#2c2c2c',
+    marginBottom: '20px',
+    fontFamily: "system-ui",
+};
+
+const imageStyle = {
+    width: '100%',
+    borderRadius: '10px 10px 0 0',
+    filter: 'grayscale(50%) contrast(120%)'
+};
 
 export default Projects;
