@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 function Navbar() {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        fetch('/test')
-        .then(response => response.json())
-        .then(data => setData(data));
-    }, []);
-
     return (
         <nav style={navStyle}>
             <div style={navContainer}>
-                {data && (
-                    <div style={profileStyle}>
-                        <img src="/headshot.jpg" alt="Profile" style={imageStyle} />
-                        <h1 style={textStyle}>{data.name}</h1>
-                    </div>
-                )}
+                <div style={profileStyle}>
+                    <img src="/headshot.jpg" alt="Profile" style={imageStyle} />
+                    <h1 style={textStyle}>Jamie Voynow</h1>
+                </div>
                 <ul style={navLinks}>
                     <li>
                         <a href="https://github.com/voynow" style={linkStyle}>
-                            <FaGithub /> GitHub
+                            <FaGithub style={socialIconStyle} /> GitHub
                         </a>
                     </li>
                     <li>
                         <a href="https://linkedin.com/in/voynow" style={linkStyle}>
-                            <FaLinkedin /> LinkedIn
+                            <FaLinkedin style={socialIconStyle} /> LinkedIn
                         </a>
                     </li>
                     <li>
                         <a href="https://twitter.com/jamievoynow" style={linkStyle}>
-                            <FaTwitter /> Twitter
+                            <FaTwitter style={socialIconStyle} /> Twitter
                         </a>
                     </li>
                 </ul>
@@ -66,6 +55,11 @@ const linkStyle = {
     paddingRight: '20px',
     fontFamily: "system-ui",
     fontSize: '1.1em',
+}
+
+const socialIconStyle = {
+    fontSize: '1.5em',
+    marginRight: '5px',
 }
 
 const profileStyle = {

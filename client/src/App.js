@@ -12,7 +12,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Portfolio />} />
-          <Route path="/projects/:projectId" element={<Project />} />
+          <Route path="/portfolio/:projectName" element={<Project />} />
         </Routes>
         <div style={styles.SkillsContainer}>
           <Skills />

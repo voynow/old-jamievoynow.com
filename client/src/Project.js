@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 const Project = () => {
     const [project, setProject] = useState(null);
     
-    const { projectId } = useParams();
+    const { projectName } = useParams();
 
     useEffect(() => {
-        fetch(`/projects/${projectId}`)
+        fetch(`/portfolio/${projectName}`)
             .then(response => response.json())
             .then(data => setProject(data));
-    }, [projectId]);
+    }, [projectName]);
 
     return (
         project && (

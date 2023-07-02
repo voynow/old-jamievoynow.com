@@ -15,4 +15,8 @@ ignore = [
     ".env",
     "__pycache__",
     "assets",
+    "reportWebVitals.js",
+    "index.js",
+    "Skills.js",
+    "Navbar.js",
 ]

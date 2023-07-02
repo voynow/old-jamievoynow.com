@@ -15,13 +15,15 @@ function Portfolio() {
             <h1 style={textStyle}>Portfolio</h1>
             <div style={projectContainer}>
                 {portfolio.map((project, index) => (
-                    <div key={index} className="project-block">
-                        <img src={project.imageUrl} alt={project.name} style={imageStyle} />
-                        <div style={textContainer}>
-                            <h2 style={projectTitle}>{project.name}</h2>
-                            <p style={projectDescription}>{project.description}</p>
+                    <Link to={`/portfolio/${project.name}`} key={project.name} style={{ textDecoration: 'none' }}>
+                        <div className="project-block">
+                            <img src={project.imageUrl} alt={project.name} style={imageStyle} />
+                            <div style={textContainer}>
+                                <h2 style={projectTitle}>{project.name}</h2>
+                                <p style={projectDescription}>{project.description}</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
