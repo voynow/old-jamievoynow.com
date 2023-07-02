@@ -1,17 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar';
 import Portfolio from './Portfolio';
+import Project from './Project';
 import Skills from './Skills';
 
 function App() {
   return (
-    <div style={styles.App}>
-      <Navbar />
-      <Portfolio />
-      <div style={styles.SkillsContainer}>
-        <Skills />
+    <Router>
+      <div style={styles.App}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+          <Route path="/projects/:projectId" element={<Project />} />
+        </Routes>
+        <div style={styles.SkillsContainer}>
+          <Skills />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
@@ -24,6 +31,5 @@ const styles = {
         justifyContent: 'space-between'
     }
 };
-
 
 export default App;

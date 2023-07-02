@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
-function Projects() {
-    const [projects, setProjects] = useState([]);
+import { Link } from 'react-router-dom';
+
+function Portfolio() {
+    const [portfolio, setPortfolio] = useState([]);
 
     useEffect(() => {
-        fetch('/projects')
+        fetch('/portfolio')
             .then(response => response.json())
-            .then(data => setProjects(data));
+            .then(data => setPortfolio(data));
     }, []);
 
     return (
-        <div style={projectsStyle}>
-            <h1 style={textStyle}>Projects</h1>
+        <div style={portfolioStyle}>
+            <h1 style={textStyle}>Portfolio</h1>
             <div style={projectContainer}>
-                {projects.map((project, index) => (
+                {portfolio.map((project, index) => (
                     <div key={index} className="project-block">
                         <img src={project.imageUrl} alt={project.name} style={imageStyle} />
                         <div style={textContainer}>
@@ -30,7 +32,7 @@ const textContainer = {
     padding: '10px 20px',
 };
 
-const projectsStyle = {
+const portfolioStyle = {
     background: '#f0f0f0',
     color: '#000000',
     margin: '20px auto',
@@ -44,7 +46,7 @@ const projectsStyle = {
 const projectContainer = {
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'nowrap',
+    flexWrap: 'npwrap',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     width: '100%',
@@ -74,4 +76,4 @@ const imageStyle = {
     filter: 'grayscale(50%) contrast(120%)'
 };
 
-export default Projects;
+export default Portfolio;

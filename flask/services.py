@@ -5,7 +5,7 @@ import config
 from dotenv import load_dotenv
 load_dotenv()
 
-def fetch_projects_info(app):
+def fetch_portfolio(app):
     """Fetch pinned projects from GitHub"""
     app.logger.info("Fetching project info")
     endpoint = "https://api.github.com/graphql"
