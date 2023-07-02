@@ -4,7 +4,7 @@ function Projects() {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        fetch('/projects') // assuming your Flask app has an endpoint at /projects
+        fetch('/projects')
             .then(response => response.json())
             .then(data => setProjects(data));
     }, []);
@@ -14,7 +14,7 @@ function Projects() {
             <h1 style={textStyle}>Projects</h1>
             <div style={projectContainer}>
                 {projects.map((project, index) => (
-                    <div key={index} style={projectStyle}>
+                    <div key={index} className="project-block">
                         <h2 style={projectTitle}>{project.name}</h2>
                         <p style={projectDescription}>{project.description}</p>
                     </div>
@@ -25,11 +25,10 @@ function Projects() {
 }
 
 const projectsStyle = {
-    background: '#f2f2f2',
+    background: '#f0f0f0',
     color: '#000000',
-    padding: '20px',
     margin: '20px auto',
-    width: '90%',
+    width: '95%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -44,25 +43,10 @@ const projectContainer = {
     overflowX: 'auto',
   }
   
-  const projectStyle = {
-    background: '#ffffff',
-    borderRadius: '10px',
-    width: '20%',
-    height: '250px',
-    padding: '20px',
-    margin: '10px',
-    boxSizing: 'border-box',
-    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-    transition: '0.3s',
-    color: '#000000',
-    textAlign: 'center',
-    marginBottom: '20px'
-  }
-  
 
 const projectTitle = {
     color: '#000000',
-    fontSize: '1.5em', // increased font size for a more modern look
+    fontSize: '1.5em',
 }
 
 const projectDescription = {
@@ -71,7 +55,7 @@ const projectDescription = {
 
 const textStyle = {
     color: '#000000',
-    marginBottom: '20px' // add some space below the heading
+    marginBottom: '20px'
 }
 
 export default Projects;
