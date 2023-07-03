@@ -19,5 +19,6 @@ ignore = [
     "index.js",
     "Skills.js",
     "Navbars.js",
-    "Portfolio.js",
+    "requirements.txt",
+    "config.py",
 ]

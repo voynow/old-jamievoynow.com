@@ -1,4 +1,3 @@
-# flask\app.py
 
 from flask import Flask
 from flask_cors import CORS
@@ -20,8 +19,9 @@ def get_project_details(project_name):
     return portfolio.get(project_name)
 
 @socketio.on('send_message')
-def handle_message(message):
-    emit('receive_message', "Hello! I'm here to assist you with any questions you have regarding this project.", broadcast=True)
+def handle_message(data):
+    response = services.chat(data['message'], data['project'])
+    emit('receive_message', response, broadcast=True)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)

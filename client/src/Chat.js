@@ -26,7 +26,7 @@ function Chat({ project }) {
         event.preventDefault();
 
         if (message) {
-            socket.emit('send_message', message);
+            socket.emit('send_message', {message: message, project: project.name});
             setMessages((messages) => [...messages, { text: message, sender: 'user' }]);
             setMessage('');
         }

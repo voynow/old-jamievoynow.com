@@ -1,2 +1,4 @@
 flask
 flask-socketio
+llm-blocks
+git2doc
