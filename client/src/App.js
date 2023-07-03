@@ -36,7 +36,7 @@ function App() {
 const styles = {
     App: {
         backgroundColor: '#f0f0f0',
-        height: '100vh',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'

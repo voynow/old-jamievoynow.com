@@ -14,47 +14,33 @@ const Project = () => {
 
     return (
         project && (
-            <div style={projectContainer}>
-                <h1 style={projectTitle}>{project.name}</h1>
-                <p style={projectDescription}>{project.description}</p>
-                <a href={project.url} target="_blank" rel="noopener noreferrer" style={projectLink}>Visit the Project</a>
-                <Chat />
+            <div style={styles.page}>
+                <div style={styles.chatContainer}>
+                    <Chat project={project} />
+                </div>
             </div>
         )
     );
 };
 
-    const projectContainer = {
+const styles = {
+    page: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         margin: '20px auto',
-        background: '#ffffff',
         color: '#2c2c2c',
+        width: '100%',
+        height: '200vh',
+        fontSize: '18px',
+    },
+    chatContainer: {
         width: '80%',
-        borderRadius: '10px',
-        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-        padding: '20px'
-    };
+        height: 'calc(100% - 40px)', 
+        backgroundColor: '#f0f0f0',
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', 
+    },
+};
 
-    const projectTitle = {
-        fontSize: '2em',
-        marginBottom: '10px'
-    };
-
-    const projectDescription = {
-        fontSize: '1.2em',
-        margin: '10px 0'
-    };
-
-    const projectLink = {
-        textDecoration: 'none',
-        fontSize: '1.2em',
-        color: '#2c2c2c',
-        border: '2px solid #2c2c2c',
-        padding: '10px',
-        borderRadius: '5px'
-    };
-
-    export default Project;
+export default Project;
