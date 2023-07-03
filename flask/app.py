@@ -1,8 +1,14 @@
-from flask import Flask, jsonify
+# flask\app.py
+
+from flask import Flask
+from flask_cors import CORS
+from flask_socketio import SocketIO, emit
 
 import services
 
 app = Flask(__name__)
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 @app.route('/portfolio')
 def portfolio():
@@ -10,8 +16,13 @@ def portfolio():
 
 @app.route('/portfolio/<string:project_name>')
 def get_project_details(project_name):
-    print("*"* 100, project_name)
-    return jsonify({"name": "test name", "description": "test description"})
+    portfolio = {project['name']: project for project in services.fetch_portfolio(app)}
+    return portfolio.get(project_name)
+
+@socketio.on('send_message')
+def handle_message(message):
+    print('received message: ' + message)
+    emit('receive_message', "Echo: " + message, broadcast=True)  # Echoes the message back to all clients.
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app, debug=True)
