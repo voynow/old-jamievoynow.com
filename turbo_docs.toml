@@ -20,5 +20,4 @@ ignore = [
     "Skills.js",
     "services.py",
     "config.py",
-    "Navbar.js",
 ]

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { colors } from './Theme';
 
 function Portfolio() {
     const [portfolio, setPortfolio] = useState([]);
@@ -35,8 +36,7 @@ const textContainer = {
 };
 
 const portfolioStyle = {
-    background: '#f0f0f0',
-    color: '#000000',
+    background: colors.lightGrey,
     margin: '20px auto',
     width: '95%',
     display: 'flex',
@@ -56,18 +56,18 @@ const projectContainer = {
 };
 
 const projectTitle = {
-    color: '#2c2c2c',
+    color: colors.text,
     fontFamily: "system-ui",
     fontSize: '1.5em',
 };
 
 const projectDescription = {
     fontFamily: "system-ui",
-    color: '#2c2c2c',
+    color: colors.text,
 };
 
 const textStyle = {
-    color: '#2c2c2c',
+    color: colors.text,
     marginBottom: '20px',
     fontFamily: "system-ui",
 };

@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Portfolio from './Portfolio';
 import Project from './Project';
 import Skills from './Skills';
+import { colors } from './Theme';
 
 function AppContent() {
   const location = useLocation();
@@ -35,7 +36,7 @@ function App() {
 
 const styles = {
     App: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: colors.lightGrey,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { io } from "socket.io-client";
+import { colors } from './Theme';
 
 let socket;
 
@@ -59,16 +60,15 @@ const styles = {
   chatContainer: {
     display: 'flex',
     flexDirection: 'column',
-    height: 'calc(100vh - 60px)',
+    height: 'calc(100vh - 110px)',
     justifyContent: 'space-between',
-    backgroundColor: '#f0f0f0',
-    color: '#2c2c2c',
-    paddingBottom: '60px',
+    backgroundColor: colors.lightGrey,
+    color: colors.text,
     fontFamily: "system-ui",
   },
   header: {
     padding: '20px',
-    borderBottom: '1px solid #ddd',
+    borderBottom: '1px solid' + colors.grey,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -80,8 +80,8 @@ const styles = {
   link: {
     textDecoration: 'none',
     fontSize: '20px',
-    color: '#2c2c2c',
-    border: '1px solid #2c2c2c',
+    color: colors.text,
+    border: '2px solid' + colors.text,
     padding: '5px',
     borderRadius: '5px'
   },
@@ -93,13 +93,13 @@ const styles = {
   },
   inputContainer: {
     display: 'flex',
-    borderTop: '1px solid #ddd',
+    borderTop: '1px solid' + colors.grey,
     padding: '30px', // Larger padding for input container
     alignItems: 'center',
     position: 'fixed',
     width: '80%',
     bottom: 0,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: colors.lightGrey,
     left: '10%',
   },
   input: {
@@ -113,8 +113,8 @@ const styles = {
   },
   sendButton: {
     padding: '15px 30px', // Larger padding for send button
-    backgroundColor: '#2c2c2c',
-    color: '#fff',
+    backgroundColor: colors.text,
+    color: colors.white,
     border: 'none',
     borderRadius: '20px',
     cursor: 'pointer',

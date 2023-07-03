@@ -28,17 +28,11 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        margin: '20px auto',
-        color: '#2c2c2c',
+        margin: '10px auto',
         width: '100%',
-        height: '200vh',
-        fontSize: '18px',
     },
     chatContainer: {
         width: '80%',
-        height: 'calc(100% - 40px)', 
-        backgroundColor: '#f0f0f0',
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)', 
     },
 };

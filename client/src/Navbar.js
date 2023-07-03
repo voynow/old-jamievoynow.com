@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { colors } from './Theme';
 
 function Navbar() {
     return (
@@ -45,16 +46,18 @@ const navLinks = {
 }
 
 const navStyle = {
-    background: '#f0f0f0',
+    background: colors.lightGrey,
     padding: '20px',
 }
 
 const linkStyle = {
-    color: '#2c2c2c',
+    color: colors.text,
     textDecoration: 'none',
     paddingRight: '20px',
-    fontFamily: "system-ui",
-    fontSize: '1.1em',
+    fontFamily: 'system-ui',
+    fontSize: '1.2em',
+    display: 'flex',
+    alignItems: 'center',
 }
 
 const socialIconStyle = {
@@ -76,7 +79,7 @@ const imageStyle = {
 }
 
 const textStyle = {
-    color: '#2c2c2c',
+    color: colors.text,
     fontSize: '1.5em',
     fontFamily: "system-ui",
     marginLeft: '10px',

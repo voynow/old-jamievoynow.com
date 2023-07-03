@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from './Theme';
 
 import PythonLogo from './assets/python.png';
 import AWSLogo from './assets/aws.png';
@@ -28,7 +29,7 @@ const Skills = () => {
       {skills.map((skill, index) => (
         <div key={index} style={skillContainerStyle}>
           <img src={skill.logo} alt={skill.name} style={logoStyle} />
-          <p style={skillTextStyle}>{skill.name}</p>
+          <h3 style={skillTextStyle}>{skill.name}</h3>
         </div>
       ))}
     </div>
@@ -49,19 +50,19 @@ const skillContainerStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   margin: '25px',
-  fontSize: '1em',
+  fontSize: '.75em',
 };
 
 const logoStyle = {
     width: '80px', 
     height: '80px',
     marginBottom: '10px',
-    borderRadius: '15%',
+    borderRadius: '20%',
   };
 
 const skillTextStyle = {
   fontFamily: 'system-ui',
-  color: '#2c2c2c',
+  color: colors.text,
 };
   
 
