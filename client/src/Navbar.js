@@ -34,7 +34,7 @@ function Navbar() {
 const navContainer = {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '90%',
+    width: '95%',
     margin: '0 auto',
 }
 

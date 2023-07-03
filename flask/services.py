@@ -5,7 +5,7 @@ import config
 from dotenv import load_dotenv
 load_dotenv()
 
-def fetch_portfolio(app):
+def fetch_portfolio():
     """Fetch pinned projects from GitHub"""
     endpoint = "https://api.github.com/graphql"
     headers = {"Authorization": f"Bearer {os.environ['GH_TOKEN']}"}

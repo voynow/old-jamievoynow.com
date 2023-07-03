@@ -18,6 +18,6 @@ ignore = [
     "reportWebVitals.js",
     "index.js",
     "Skills.js",
-    "services.py",
-    "config.py",
+    "Navbars.js",
+    "Portfolio.js",
 ]
