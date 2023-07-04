@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { io } from "socket.io-client";
 import { colors } from './Theme';
+import userAvatar from './assets/userAvatar.png';
+import computerAvatar from './assets/computerAvatar.png';
+
 
 let socket;
 
@@ -39,43 +42,7 @@ function Chat({ project }) {
         <>
             <style>
                 {`
-            .typing-indicator {
-                display: inline-block;
-                position: relative;
-                width: 40px;
-                height: 20px;
-            }
 
-            .typing-indicator span {
-                position: absolute;
-                top: 0;
-                width: 6px;
-                height: 6px;
-                margin-right: 3px;
-                background: #444;
-                border-radius: 50%;
-                animation: typing-indicator 1.4s infinite ease-in-out both;
-            }
-
-            .typing-indicator span:nth-child(1) {
-                left: 6px;
-                animation-delay: -0.32s;
-            }
-
-            .typing-indicator span:nth-child(2) {
-                left: 18px;
-                animation-delay: -0.16s;
-            }
-
-            .typing-indicator span:nth-child(3) {
-                left: 30px;
-                animation-delay: 0;
-            }
-
-            @keyframes typing-indicator {
-                0%, 80%, 100% { transform: scale(0); }
-                40% { transform: scale(1); }
-            }
             `}
             </style>
             <div style={styles.chatContainer}>
@@ -86,7 +53,9 @@ function Chat({ project }) {
                 <div style={styles.messagesContainer}>
                     {messages.map((message, index) => (
                         <div style={message.sender === 'user' ? styles.userMessageContainer : styles.computerMessageContainer} key={index}>
+                            {message.sender === 'computer' && <img src={computerAvatar} alt="avatar" style={styles.avatar} />} {/* This line only displays the computer avatar when the sender is the computer */}
                             <p style={message.sender === 'user' ? styles.userMessage : styles.computerMessage}>{message.text}</p>
+                            {message.sender === 'user' && <img src={userAvatar} alt="avatar" style={styles.userAvatar} />} {/* This line only displays the user avatar when the sender is the user */}
                         </div>
                     ))}
                     {isTyping && <div className="typing-indicator"><span></span><span></span><span></span></div>} {/* new line */}
@@ -193,6 +162,18 @@ const styles = {
         color: colors.white,
         padding: '10px',
         borderRadius: '10px',
+    },
+    avatar: {
+        width: '50px',
+        height: '50px',
+        borderRadius: '25%',
+        marginRight: '5px',
+    },
+    userAvatar: {
+        width: '40px',
+        height: '40px',
+        borderRadius: '25%',
+        marginLeft: '5px',
     },
 };
 
