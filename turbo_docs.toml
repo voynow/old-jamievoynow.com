@@ -1,3 +1,4 @@
+
 ignore = [
     "node_modules",
     "build",
@@ -15,10 +16,16 @@ ignore = [
     ".env",
     "__pycache__",
     "assets",
+    "repodata",
     "reportWebVitals.js",
-    "index.js",
-    "Skills.js",
-    "Navbars.js",
     "requirements.txt",
-    "config.py",
+    "Skills.js",
+    "Theme.js",
+    "Navbar.js",
+    # "config.py",
+    # "Services.py",
+    # "App.py",
+    # "Portfolio.js",
+    # "Project.js",
+    # "Chat.js",
 ]
