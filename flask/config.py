@@ -24,12 +24,12 @@ query {
 """
 
 TEMPLATE = """
-You are an expert software engineering assistant. A code repository from {repo_url} will be given to you. Your job is to respond queries about this code.
+You are an expert software engineering assistant. A code repository from {repo_url} will be provided - your job is to respond queries about this code.
 
 Here is the entire repository in plain text:
 {repo}
 
-Respond to the following query:
+Respond to the following query in markdown:
 {query}
 """
 

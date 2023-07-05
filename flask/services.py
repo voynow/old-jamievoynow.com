@@ -50,7 +50,7 @@ def chat(query, project_name):
         repo_str += f"{item['file_path']}:\n\n{item['page_content']}\n\n" 
 
     try:
-        project_chat_chain = chat_utils.GenericChain(template=config.TEMPLATE, model_name="gpt-3.5-turbo")
+        project_chat_chain = chat_utils.GenericChain(template=config.TEMPLATE, model_name="gpt-3.5-turbo-16k")
         response = project_chat_chain(repo_url=repo_url, repo=repo_str, query=query)["text"]
     except openai.error.InvalidRequestError:
         num_tokens = num_tokens_from_string(repo_str)

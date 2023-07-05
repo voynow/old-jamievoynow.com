@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { io } from "socket.io-client";
 import { colors } from './Theme';
+import ReactMarkdown from 'react-markdown';
 
 
 let socket;
@@ -8,7 +9,7 @@ let socket;
 function Chat({ project }) {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const [isTyping, setIsTyping] = useState(false); // new state
+    const [isTyping, setIsTyping] = useState(false);
 
     useEffect(() => {
         socket = io('http://localhost:5000');
@@ -29,7 +30,7 @@ function Chat({ project }) {
         event.preventDefault();
 
         if (message) {
-            setIsTyping(true); // new line
+            setIsTyping(true);
             socket.emit('send_message', { message: message, project: project.name });
             setMessages((messages) => [...messages, { text: message, sender: 'user' }]);
             setMessage('');
@@ -38,11 +39,7 @@ function Chat({ project }) {
 
     return (
         <>
-            <style>
-                {`
 
-            `}
-            </style>
             <div style={styles.chatContainer}>
                 <div style={styles.header}>
                     <h3 style={styles.headerTitle}>Chat with {project.name}</h3>
@@ -50,8 +47,16 @@ function Chat({ project }) {
                 </div>
                 <div style={styles.messagesContainer}>
                     {messages.map((message, index) => (
-                        <div style={message.sender === 'user' ? styles.userMessageContainer : styles.computerMessageContainer} key={index}>
-                            <p style={message.sender === 'user' ? styles.userMessage : styles.computerMessage}>{message.text}</p>
+                        <div
+                            style={message.sender === 'user' ? styles.userMessageContainer : styles.computerMessageContainer}
+                            key={index}
+                        >
+                            <p style={message.sender === 'user' ? styles.userMessage : styles.computerMessage}>
+                                <ReactMarkdown
+                                    children={message.text}
+                                    className="chat-markdown"
+                                />
+                            </p>
                         </div>
                     ))}
                     {isTyping && <div className="typing-indicator"><span></span><span></span><span></span></div>} {/* new line */}
@@ -92,11 +97,11 @@ const styles = {
     },
     headerTitle: {
         margin: 0,
-        fontSize: '24px',
+        fontSize: '22px',
     },
     link: {
         textDecoration: 'none',
-        fontSize: '20px',
+        fontSize: '18px',
         color: colors.text,
         border: '2px solid' + colors.text,
         padding: '5px',
@@ -106,7 +111,7 @@ const styles = {
         flex: '1',
         overflowY: 'auto',
         padding: '20px',
-        fontSize: '20px',
+        fontSize: '16px',
     },
     inputContainer: {
         display: 'flex',
@@ -121,17 +126,16 @@ const styles = {
     },
     input: {
         flex: '1',
-        border: 'none',
         borderRadius: '20px',
         padding: '15px 30px',
         marginRight: '10px',
         outline: 'none',
-        fontSize: '20px',
+        fontSize: '16px',
         border: '2px solid' + colors.grey,
     },
     sendButton: {
         textDecoration: 'none',
-        fontSize: '20px',
+        fontSize: '18px',
         color: colors.text,
         border: '2px solid' + colors.text,
         padding: '5px',
