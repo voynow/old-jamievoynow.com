@@ -1,27 +1,49 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { colors } from './Theme';
 
 function Navbar() {
+    const [hoveredLink, setHoveredLink] = useState(null);
+
+    const getLinkStyle = (linkName) => {
+        return hoveredLink === linkName ? { textDecoration: 'underline' } : {};
+    };
+
     return (
         <nav style={navStyle}>
             <div style={navContainer}>
-                <div style={profileStyle}>
-                    <img src="/headshot.jpg" alt="Profile" style={imageStyle} />
-                    <h1 style={textStyle}>Jamie Voynow</h1>
-                </div>
+                <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div style={profileStyle}>
+                        <img src="/headshot.jpg" alt="Profile" style={imageStyle} />
+                        <h1 style={{ ...textStyle, ...getLinkStyle('name') }}
+                            onMouseEnter={() => setHoveredLink('name')}
+                            onMouseLeave={() => setHoveredLink(null)}
+                        >Jamie Voynow</h1>
+                    </div>
+                </Link>
                 <ul style={navLinks}>
                     <li>
-                        <a href="https://github.com/voynow" style={linkStyle}>
+                        <a href="https://github.com/voynow" style={{ ...linkStyle, ...getLinkStyle('github') }}
+                            onMouseEnter={() => setHoveredLink('github')}
+                            onMouseLeave={() => setHoveredLink(null)}
+                        >
                             <FaGithub style={socialIconStyle} /> GitHub
                         </a>
                     </li>
                     <li>
-                        <a href="https://linkedin.com/in/voynow" style={linkStyle}>
+                        <a href="https://linkedin.com/in/voynow" style={{ ...linkStyle, ...getLinkStyle('linkedin') }}
+                            onMouseEnter={() => setHoveredLink('linkedin')}
+                            onMouseLeave={() => setHoveredLink(null)}
+                        >
                             <FaLinkedin style={socialIconStyle} /> LinkedIn
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/jamievoynow" style={linkStyle}>
+                        <a href="https://twitter.com/jamievoynow" style={{ ...linkStyle, ...getLinkStyle('twitter') }}
+                            onMouseEnter={() => setHoveredLink('twitter')}
+                            onMouseLeave={() => setHoveredLink(null)}
+                        >
                             <FaTwitter style={socialIconStyle} /> Twitter
                         </a>
                     </li>
@@ -42,7 +64,7 @@ const navLinks = {
     listStyle: 'none',
     display: 'flex',
     justifyContent: 'flex-start',
-    alignItems: 'center', 
+    alignItems: 'center',
 }
 
 const navStyle = {

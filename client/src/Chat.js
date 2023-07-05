@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { io } from "socket.io-client";
 import { colors } from './Theme';
-import userAvatar from './assets/userAvatar.png';
-import computerAvatar from './assets/computerAvatar.png';
 
 
 let socket;
@@ -53,9 +51,7 @@ function Chat({ project }) {
                 <div style={styles.messagesContainer}>
                     {messages.map((message, index) => (
                         <div style={message.sender === 'user' ? styles.userMessageContainer : styles.computerMessageContainer} key={index}>
-                            {message.sender === 'computer' && <img src={computerAvatar} alt="avatar" style={styles.avatar} />} {/* This line only displays the computer avatar when the sender is the computer */}
                             <p style={message.sender === 'user' ? styles.userMessage : styles.computerMessage}>{message.text}</p>
-                            {message.sender === 'user' && <img src={userAvatar} alt="avatar" style={styles.userAvatar} />} {/* This line only displays the user avatar when the sender is the user */}
                         </div>
                     ))}
                     {isTyping && <div className="typing-indicator"><span></span><span></span><span></span></div>} {/* new line */}
@@ -162,18 +158,6 @@ const styles = {
         color: colors.white,
         padding: '10px',
         borderRadius: '10px',
-    },
-    avatar: {
-        width: '50px',
-        height: '50px',
-        borderRadius: '25%',
-        marginRight: '5px',
-    },
-    userAvatar: {
-        width: '40px',
-        height: '40px',
-        borderRadius: '25%',
-        marginLeft: '5px',
     },
 };
 
