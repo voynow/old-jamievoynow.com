@@ -39,10 +39,12 @@ function Chat({ project }) {
 
     return (
         <>
-
             <div style={styles.chatContainer}>
                 <div style={styles.header}>
-                    <h3 style={styles.headerTitle}>Chat with {project.name}</h3>
+                    <div style={styles.titleContainer}>
+                        <h3 style={styles.headerTitle}>Chat with {project.name}</h3>
+                        <p style={styles.description}>{project.description}</p>
+                    </div>
                     <a href={project.url} target="_blank" rel="noopener noreferrer" style={styles.link}>Link to Github</a>
                 </div>
                 <div style={styles.messagesContainer}>
