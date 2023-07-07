@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { colors } from './Theme';
+import headshot from './images/headshot.jpg';
 
 function Navbar() {
     const [hoveredLink, setHoveredLink] = useState(null);
@@ -15,7 +16,7 @@ function Navbar() {
             <div style={navContainer}>
                 <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div style={profileStyle}>
-                        <img src="/headshot.jpg" alt="Profile" style={imageStyle} />
+                        <img src={headshot} alt="Profile" style={imageStyle} />
                         <h1 style={{ ...textStyle, ...getLinkStyle('name') }}
                             onMouseEnter={() => setHoveredLink('name')}
                             onMouseLeave={() => setHoveredLink(null)}

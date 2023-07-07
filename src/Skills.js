@@ -1,15 +1,15 @@
 import React from 'react';
 import { colors } from './Theme';
 
-import PythonLogo from './assets/python.png';
-import AWSLogo from './assets/aws.png';
-import PysparkLogo from './assets/spark.png';
-import OpenAILogo from './assets/openai.png';
-import PandasLogo from './assets/pandas.png';
-import AWSS3Logo from './assets/s3.png';
-import AWSStepFunctionsLogo from './assets/stepfunctions.svg';
-import AWSGlueLogo from './assets/glue.png';
-import AWSLambdaLogo from './assets/lambda.png';
+import PythonLogo from './images/python.png';
+import AWSLogo from './images/aws.png';
+import PysparkLogo from './images/spark.png';
+import OpenAILogo from './images/openai.png';
+import PandasLogo from './images/pandas.png';
+import AWSS3Logo from './images/s3.png';
+import AWSStepFunctionsLogo from './images/stepfunctions.svg';
+import AWSGlueLogo from './images/glue.png';
+import AWSLambdaLogo from './images/lambda.png';
 
 const skills = [
   { name: 'Python', logo: PythonLogo },
