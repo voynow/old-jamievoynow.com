@@ -6,7 +6,7 @@ function Portfolio() {
     const [portfolio, setPortfolio] = useState([]);
 
     useEffect(() => {
-        const url = process.env.REACT_APP_VERCEL_URL ? `${process.env.VERCEL_URL}/portfolio` : '/portfolio';
+        const url = process.env.REACT_APP_VERCEL_URL ? `${process.env.REACT_APP_VERCEL_URL}/portfolio` : '/portfolio';
         console.log(url);
         console.log(process.env);
         fetch(url)
