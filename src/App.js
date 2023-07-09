@@ -13,10 +13,10 @@ function AppContent() {
   return (
     <div style={styles.App}>
         <Navbar />
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Portfolio />} />
           <Route path="/portfolio/:projectName" element={<Project />} />
-        </Routes>
+        </Routes> */}
         {isOnPortfolioPage && (
           <div style={styles.SkillsContainer}>
             <Skills />
