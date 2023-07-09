@@ -10,7 +10,8 @@ function Portfolio() {
         console.log(url);
         fetch(url)
             .then(response => response.json())
-            .then(data => setPortfolio(data));
+            .then(data => setPortfolio(data))
+            .catch(err => console.error(err));
     }, [url]);
 
     useEffect(() => {
