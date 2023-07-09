@@ -4,22 +4,22 @@ import { colors } from './Theme';
 
 function Portfolio() {
     const [portfolio, setPortfolio] = useState([]);
+    const url = process.env.REACT_APP_VERCEL_URL ? `${process.env.REACT_APP_VERCEL_URL}/portfolio` : '/portfolio';
 
     useEffect(() => {
-        const url = process.env.REACT_APP_VERCEL_URL ? `${process.env.REACT_APP_VERCEL_URL}/portfolio` : '/portfolio';
         console.log(url);
         console.log(process.env);
         fetch(url)
             .then(response => response.json())
             .then(data => setPortfolio(data));
-    }, []);
+    }, [url]);
 
     return (
         <div style={portfolioStyle}>
             <h1 style={textStyle}>Portfolio</h1>
             <div style={projectContainer}>
                 {portfolio.map((project, index) => (
-                    <Link to={`/portfolio/${project.name}`} key={project.name} style={{ textDecoration: 'none' }}>
+                    <Link to={`${url}/${project.name}`} key={project.name} style={{ textDecoration: 'none' }}>
                         <div className="project-block">
                             <img src={project.imageUrl} alt={project.name} style={imageStyle} />
                             <div style={textContainer}>
