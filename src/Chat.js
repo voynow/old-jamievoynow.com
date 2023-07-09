@@ -12,7 +12,8 @@ function Chat({ project }) {
     const [isTyping, setIsTyping] = useState(false);
 
     useEffect(() => {
-        socket = io('http://localhost:5000');
+        const url = process.env.REACT_APP_VERCEL_URL ? `${process.env.REACT_APP_VERCEL_URL}` : 'http://localhost:5000';
+        socket = io(url);
 
         setMessages([{ text: "Hello! I'm here to assist you with any questions you have regarding this project.", sender: 'computer' }]);
 
