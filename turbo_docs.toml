@@ -18,6 +18,7 @@ ignore = [
     "__pycache__",
     "assets",
     "repodata",
+    "setupTests.js",
     "reportWebVitals.js",
     "requirements.txt",
     "Skills.js",

@@ -8,11 +8,14 @@ function Portfolio() {
 
     useEffect(() => {
         console.log(url);
-        console.log(process.env);
         fetch(url)
             .then(response => response.json())
             .then(data => setPortfolio(data));
     }, [url]);
+
+    useEffect(() => {
+        console.log(portfolio);
+      }, [portfolio]);
 
     return (
         <div style={portfolioStyle}>
