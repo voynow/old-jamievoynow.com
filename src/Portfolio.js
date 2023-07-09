@@ -4,9 +4,11 @@ import { colors } from './Theme';
 
 function Portfolio() {
     const [portfolio, setPortfolio] = useState([]);
-    
+
     useEffect(() => {
         const url = process.env.VERCEL_URL ? `${process.env.VERCEL_URL}/portfolio` : '/portfolio';
+        console.log(url);
+        console.log(process.env);
         fetch(url)
             .then(response => response.json())
             .then(data => setPortfolio(data));
