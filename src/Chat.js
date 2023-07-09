@@ -12,7 +12,7 @@ function Chat({ project }) {
     const [isTyping, setIsTyping] = useState(false);
 
     useEffect(() => {
-        socket = io(window.location.origin);
+        socket = io('http://localhost:5000');
 
         setMessages([{ text: "Hello! I'm here to assist you with any questions you have regarding this project.", sender: 'computer' }]);
 
